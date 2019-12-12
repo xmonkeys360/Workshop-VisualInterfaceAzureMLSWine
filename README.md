@@ -166,7 +166,7 @@ During the data preparation, we already created the variable “color” as we a
 # which is the entry point for this module.
 azureml_main <- function(dataframe1, dataframe2){
   print("R script run.")
-  dataframe1$qualityBool <- ifelse(dataframe1$quality<6,0,1)
+  dataframe1$qual_bool <- ifelse(dataframe1$quality<6,0,1)
   # Return datasets as a Named List
   return(list(dataset1=dataframe1, dataset2=dataframe2))
 }
