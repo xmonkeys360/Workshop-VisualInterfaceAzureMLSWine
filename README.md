@@ -164,9 +164,17 @@ During the data preparation, we already created the variable “color” as we a
 # R version: 3.5.1
 # The script MUST contain a function named azureml_main
 # which is the entry point for this module.
+
+# The entry point function can contain up to two input arguments:
+#   Param<dataframe1>: a R DataFrame
+#   Param<dataframe2>: a R DataFrame
 azureml_main <- function(dataframe1, dataframe2){
   print("R script run.")
-  dataframe1$qual_bool <- ifelse(dataframe1$quality<6,0,1)
+
+  # If a zip file is connected to the third input port, it is
+  # unzipped under "./Script Bundle". This directory is added
+  # to sys.path.
+  dataframe1$qualityBool <- ifelse(dataframe1$quality<6,0,1)
   # Return datasets as a Named List
   return(list(dataset1=dataframe1, dataset2=dataframe2))
 }
